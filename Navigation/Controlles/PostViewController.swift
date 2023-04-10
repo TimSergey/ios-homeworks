@@ -18,10 +18,14 @@ class PostViewController: UIViewController {
     
     private func setupPostVC() {
         self.view.backgroundColor = .systemBackground
-        self.navigationItem.title = "Заголовок поста"
+        self.navigationItem.title = post != nil ? post?.title : ""
         
-        if let post = post {
-            title = post.title
-        }
+        let barButtom = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapOnBarButton))
+        navigationItem.rightBarButtonItem = barButtom
+    }
+    
+    @objc func tapOnBarButton() {
+        let infoViewController = InfoViewController()
+        present(infoViewController, animated: true)
     }
 }
