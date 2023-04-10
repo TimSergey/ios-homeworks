@@ -8,7 +8,9 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-
+    
+    var post = Post(title: "Все посты")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -27,6 +29,7 @@ class FeedViewController: UIViewController {
     
     @objc func showMyPost() {
         let postViewController = PostViewController()
+        postViewController.post = post
         navigationController?.pushViewController(postViewController, animated: true)
     }
 }
