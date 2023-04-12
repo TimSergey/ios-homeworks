@@ -11,10 +11,6 @@ class InfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupPostVC()
-    }
-    private func setupPostVC() {
         self.view.backgroundColor = .systemBackground
     }
     
