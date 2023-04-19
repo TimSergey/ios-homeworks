@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    private var statusText = ""
+    
     private  let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "avatar")
@@ -54,6 +56,20 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
+    private lazy var statusTextField: UITextField = {
+        let textField = UITextField()
+        textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 12
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.placeholder = "Enter your status"
+        textField.textAlignment = .center
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        return textField
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupView()
@@ -64,37 +80,55 @@ class ProfileHeaderView: UIView {
     }
     
     private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
         addSubview(photoImageView)
         addSubview(userNameLabel)
         addSubview(statusTextLabel)
         addSubview(statusButton)
+        addSubview(statusTextField)
+        
+        statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        statusTextField.addTarget(self, action: #selector(hideKeyboard), for: .editingDidEndOnExit)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
+        let indentConst:CGFloat = 16
+        
         NSLayoutConstraint.activate([
-            photoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            photoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: indentConst),
+            photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: indentConst),
             photoImageView.heightAnchor.constraint(equalToConstant: 100),
             photoImageView.widthAnchor.constraint(equalToConstant: 100),
 
             userNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            userNameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 10),
-            statusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            statusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            statusButton.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 16),
+            userNameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: indentConst),
+            
+            statusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: indentConst),
+            statusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -indentConst),
+            statusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: indentConst),
             statusButton.heightAnchor.constraint(equalToConstant: 50),
 
-            statusTextLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 10),
-            statusTextLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34)
+            statusTextLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: indentConst),
+            statusTextLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: indentConst),
+            
+            statusTextField.topAnchor.constraint(equalTo: statusTextLabel.bottomAnchor, constant: indentConst),
+            statusTextField.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: indentConst),
+            statusTextField.trailingAnchor.constraint(equalTo: statusButton.trailingAnchor),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
     @objc func buttonPressed() {
-        if let statusTextLabel = statusTextLabel.text {
-            print(statusTextLabel)
-        }
+        statusTextLabel.text = statusText
+        statusTextField.text = ""
     }
+    
+    @objc func statusTextChanged(_ textField: UITextField) {
+        statusText = textField.text ?? "Enter your status"
+    }
+    
+    @objc func hideKeyboard() {
+            endEditing(true)
+        }
 }
