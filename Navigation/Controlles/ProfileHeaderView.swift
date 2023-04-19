@@ -100,7 +100,7 @@ class ProfileHeaderView: UIView {
             photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: indentConst),
             photoImageView.heightAnchor.constraint(equalToConstant: 100),
             photoImageView.widthAnchor.constraint(equalToConstant: 100),
-
+            
             userNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             userNameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: indentConst),
             
@@ -108,7 +108,7 @@ class ProfileHeaderView: UIView {
             statusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -indentConst),
             statusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: indentConst),
             statusButton.heightAnchor.constraint(equalToConstant: 50),
-
+            
             statusTextLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: indentConst),
             statusTextLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: indentConst),
             
@@ -129,6 +129,6 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func hideKeyboard() {
-            endEditing(true)
-        }
+        endEditing(true)
+    }
 }
