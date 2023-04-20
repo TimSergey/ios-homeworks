@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    private var statusText = ""
+    private var statusText = "Waiting for something..."
     
     private  let avatarImageView: UIImageView = {
         let imageView = UIImageView()
