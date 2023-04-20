@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
     
     private var statusText = ""
     
-    private  let photoImageView: UIImageView = {
+    private  let avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "avatar")
@@ -23,7 +23,7 @@ class ProfileHeaderView: UIView {
         return imageView
     }()
     
-    private  let userNameLabel: UILabel = {
+    private  let fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -31,7 +31,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private var statusTextLabel: UILabel = {
+    private var statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
@@ -40,7 +40,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private lazy var statusButton: UIButton = {
+    private lazy var setStatusButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Show status", for: .normal)
@@ -75,6 +75,7 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupView()
+        layout()
     }
     
     required init?(coder: NSCoder) {
@@ -82,42 +83,15 @@ class ProfileHeaderView: UIView {
     }
     
     private func setupView() {
-        addSubview(photoImageView)
-        addSubview(userNameLabel)
-        addSubview(statusTextLabel)
-        addSubview(statusButton)
+        addSubview(avatarImageView)
+        addSubview(fullNameLabel)
+        addSubview(statusLabel)
+        addSubview(setStatusButton)
         addSubview(statusTextField)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        NSLayoutConstraint.activate([
-            photoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metric.indentConst),
-            photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metric.indentConst),
-            photoImageView.heightAnchor.constraint(equalToConstant: 100),
-            photoImageView.widthAnchor.constraint(equalToConstant: 100),
-            
-            userNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            userNameLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: Metric.indentConst),
-            
-            statusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metric.indentConst),
-            statusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metric.indentConst),
-            statusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Metric.indentConst),
-            statusButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            statusTextLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: Metric.indentConst),
-            statusTextLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: Metric.indentConst),
-            
-            statusTextField.topAnchor.constraint(equalTo: statusTextLabel.bottomAnchor, constant: Metric.indentConst),
-            statusTextField.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: Metric.indentConst),
-            statusTextField.trailingAnchor.constraint(equalTo: statusButton.trailingAnchor),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40)
-        ])
-    }
-    
     @objc func buttonPressed() {
-        statusTextLabel.text = statusText
+        statusLabel.text = statusText
         print(statusTextField.text ?? "")
         statusTextField.text = ""
     }
@@ -134,5 +108,30 @@ class ProfileHeaderView: UIView {
 extension ProfileHeaderView {
     enum Metric {
         static let indentConst:CGFloat = 16
+    }
+    
+    private func layout() {
+        NSLayoutConstraint.activate([
+            avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metric.indentConst),
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metric.indentConst),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            
+            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
+            
+            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metric.indentConst),
+            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metric.indentConst),
+            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Metric.indentConst),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
+            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: Metric.indentConst),
+            
+            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: Metric.indentConst),
+            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
+            statusTextField.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
 }

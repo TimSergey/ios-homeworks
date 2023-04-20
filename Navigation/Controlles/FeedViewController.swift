@@ -13,7 +13,7 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray3
+        view.backgroundColor = .systemBackground
     }
     
     override func viewDidLayoutSubviews() {

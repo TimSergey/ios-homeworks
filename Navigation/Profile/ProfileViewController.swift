@@ -9,7 +9,11 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private var profileHeaderView = ProfileHeaderView()
+    private var profileHeaderView: ProfileHeaderView = {
+        let profileHeaderView = ProfileHeaderView()
+        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        return profileHeaderView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,13 +23,11 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupView() {
-        
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            profileHeaderView.heightAnchor.constraint(equalToConstant: 220)
         ])
     }
 }
