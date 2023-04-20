@@ -17,6 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [createFeedVC(), createProfileVC()]
         tabBarController.tabBar.tintColor = UIColor.blue
+        tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.unselectedItemTintColor = .black
         
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = tabBarController
@@ -30,7 +32,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let feedViewController = FeedViewController()
         feedViewController.title = "Лента новостей"
         feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "newspaper.circle"), tag: 0)
-        
         return UINavigationController(rootViewController: feedViewController)
     }
     
