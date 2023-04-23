@@ -9,8 +9,6 @@ import UIKit
 
 final class LogInViewController: UIViewController {
     
-    //private let mwColor = #colorLiteral(red: 0.2823529412, green: 0.5215686275, blue: 0.8, alpha: 1)
-    
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
