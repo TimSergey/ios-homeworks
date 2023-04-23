@@ -17,7 +17,7 @@ class PostViewController: UIViewController {
     }
     
     private func setupPostVC() {
-        self.view.backgroundColor = .lightGray
+        self.view.backgroundColor = .systemBackground
         self.navigationItem.title = post != nil ? post?.title : ""
         
         let barButtom = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapOnBarButton))
