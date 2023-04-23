@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     private var profileHeaderView: ProfileHeaderView = {
         let profileHeaderView = ProfileHeaderView()
@@ -45,5 +45,20 @@ class ProfileViewController: UIViewController {
             newButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             newButton.heightAnchor.constraint(equalToConstant: Metric.buttonHeight)
         ])
+    }
+}
+
+extension ProfileViewController {
+    enum Metric {
+        static let indentConst: CGFloat = 16
+        static let imageHeight: CGFloat = 100
+        static let imageWidth: CGFloat = 100
+        static let indentNameLabel: CGFloat = 27
+        static let buttonHeight: CGFloat = 50
+        static let textFieldHeight: CGFloat = 40
+        static let stackViewWidtht:CGFloat = 150
+        static let profileHeaderViewHeight:CGFloat = 220
+        static let logoIndent: CGFloat = 120
+        static let stackViewHeight: CGFloat = 100
     }
 }

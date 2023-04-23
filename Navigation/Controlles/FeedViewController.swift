@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
+final class FeedViewController: UIViewController {
     
     var post = Post(title: "Все посты")
     
@@ -58,10 +58,10 @@ class FeedViewController: UIViewController {
 
 extension FeedViewController {
     
-//    enum Metric {
-//        static let widthtSV:CGFloat = 150
-//        static let heightButton:CGFloat = 50
-//    }
+    enum Metric {
+        static let stackViewWidtht:CGFloat = 150
+        static let buttonHeight:CGFloat = 50
+    }
     
     private func layout() {
         view.addSubview(stackView)
