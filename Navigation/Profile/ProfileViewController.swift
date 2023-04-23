@@ -38,12 +38,12 @@ class ProfileViewController: UIViewController {
             profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
+            profileHeaderView.heightAnchor.constraint(equalToConstant: Metric.profileHeaderViewHeight),
             
             newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             newButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newButton.heightAnchor.constraint(equalToConstant: 50)
+            newButton.heightAnchor.constraint(equalToConstant: Metric.buttonHeight)
         ])
     }
 }

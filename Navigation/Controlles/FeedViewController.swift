@@ -58,10 +58,10 @@ class FeedViewController: UIViewController {
 
 extension FeedViewController {
     
-    enum Metric {
-        static let widthtSV:CGFloat = 150
-        static let heightButton:CGFloat = 50
-    }
+//    enum Metric {
+//        static let widthtSV:CGFloat = 150
+//        static let heightButton:CGFloat = 50
+//    }
     
     private func layout() {
         view.addSubview(stackView)
@@ -71,13 +71,13 @@ extension FeedViewController {
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            stackView.widthAnchor.constraint(equalToConstant: Metric.widthtSV),
+            stackView.widthAnchor.constraint(equalToConstant: Metric.stackViewWidtht),
             
-            buttonFirst.heightAnchor.constraint(equalToConstant: Metric.heightButton),
+            buttonFirst.heightAnchor.constraint(equalToConstant: Metric.buttonHeight),
             buttonFirst.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             buttonFirst.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             
-            buttonSecond.heightAnchor.constraint(equalToConstant: Metric.heightButton),
+            buttonSecond.heightAnchor.constraint(equalToConstant: Metric.buttonHeight),
             buttonSecond.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             buttonSecond.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
         ])
