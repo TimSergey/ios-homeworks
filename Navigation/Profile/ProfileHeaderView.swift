@@ -106,24 +106,24 @@ class ProfileHeaderView: UIView {
 }
 
 extension ProfileHeaderView {
-    enum Metric {
-        static let indentConst:CGFloat = 16
-    }
+//    enum Metric {
+//        static let indentConst:CGFloat = 16
+//    }
     
     private func layout() {
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metric.indentConst),
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metric.indentConst),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            avatarImageView.heightAnchor.constraint(equalToConstant: Metric.avatarHeight),
+            avatarImageView.widthAnchor.constraint(equalToConstant: Metric.avatarWidth),
             
-            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metric.indentNameLabel),
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
             
             setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metric.indentConst),
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metric.indentConst),
             setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Metric.indentConst),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            setStatusButton.heightAnchor.constraint(equalToConstant: Metric.buttonHeight),
             
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
             statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: Metric.indentConst),
@@ -131,7 +131,7 @@ extension ProfileHeaderView {
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: Metric.indentConst),
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
             statusTextField.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40)
+            statusTextField.heightAnchor.constraint(equalToConstant: Metric.textFieldHeight)
         ])
     }
 }
