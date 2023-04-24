@@ -29,7 +29,10 @@ final class FeedViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(named: "blue_pixel")
+        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        button.clipsToBounds = true
         button.layer.cornerRadius = 12
         button.setTitle("First button", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -41,8 +44,11 @@ final class FeedViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 12
+        button.layer.cornerRadius = 10
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(named: "blue_pixel")
+        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        button.clipsToBounds = true
         button.setTitle("Second button", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(showMyPost), for: .touchUpInside)

@@ -46,6 +46,9 @@ final class ProfileHeaderView: UIView {
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        button.clipsToBounds = true
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
@@ -68,7 +71,6 @@ final class ProfileHeaderView: UIView {
         textField.textAlignment = .center
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         textField.addTarget(self, action: #selector(hideKeyboard), for: .editingDidEndOnExit)
-        
         return textField
     }()
     

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		844B854229F4FC3A00A4C0AD /* Metric Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B854129F4FC3A00A4C0AD /* Metric Layout.swift */; };
 		844B854429F50CF100A4C0AD /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B854329F50CF100A4C0AD /* LogInViewController.swift */; };
 		8450079E29E34D90005793A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450079D29E34D90005793A4 /* AppDelegate.swift */; };
 		845007A029E34D90005793A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450079F29E34D90005793A4 /* SceneDelegate.swift */; };
@@ -22,7 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		844B854129F4FC3A00A4C0AD /* Metric Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metric Layout.swift"; sourceTree = "<group>"; };
 		844B854329F50CF100A4C0AD /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		8450079A29E34D90005793A4 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8450079D29E34D90005793A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 		845007BE29E40431005793A4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				844B854129F4FC3A00A4C0AD /* Metric Layout.swift */,
 				845007BA29E3FBB8005793A4 /* Post.swift */,
 			);
 			path = Data;
@@ -199,7 +196,6 @@
 				845007B629E35469005793A4 /* FeedViewController.swift in Sources */,
 				8450079E29E34D90005793A4 /* AppDelegate.swift in Sources */,
 				845007BD29E402BF005793A4 /* InfoViewController.swift in Sources */,
-				844B854229F4FC3A00A4C0AD /* Metric Layout.swift in Sources */,
 				845007BB29E3FBB9005793A4 /* Post.swift in Sources */,
 				845007A029E34D90005793A4 /* SceneDelegate.swift in Sources */,
 				845007B929E3EA3E005793A4 /* PostViewController.swift in Sources */,
