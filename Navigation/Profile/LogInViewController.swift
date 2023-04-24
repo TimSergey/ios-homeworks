@@ -100,6 +100,19 @@ final class LogInViewController: UIViewController {
         layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willHideKeybord), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     private func addSubview() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -118,9 +131,20 @@ final class LogInViewController: UIViewController {
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
+    
+    @objc func willShowKeyboard(_ notification: NSNotification) {
+        if let keyboardSize: CGRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height + loginButton.frame.height
+        }
+    }
+    
+    @objc func willHideKeybord(_ notification: NSNotification) {
+        scrollView.contentInset.bottom = 0.0
+    }
 }
 
 extension LogInViewController {
+    
     enum Metric {
         static let indentConst: CGFloat = 16
         static let imageHeight: CGFloat = 100
@@ -132,9 +156,7 @@ extension LogInViewController {
     }
     
     private func layout() {
-        
         NSLayoutConstraint.activate([
-            
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -153,12 +175,11 @@ extension LogInViewController {
             
             emailTextField.heightAnchor.constraint(equalToConstant: Metric.textFieldHeight),
             passwordTextField.heightAnchor.constraint(equalToConstant: Metric.textFieldHeight),
-
+            
             stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: Metric.logoIndent),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Metric.indentConst),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Metric.indentConst),
             stackView.heightAnchor.constraint(equalToConstant: Metric.stackViewHeight),
-            
             
             loginButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: Metric.indentConst),
             loginButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
