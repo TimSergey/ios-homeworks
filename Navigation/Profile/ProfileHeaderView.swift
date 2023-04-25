@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+final class ProfileHeaderView: UIView {
     
     private var statusText = "Waiting for something..."
     
-    private  let avatarImageView: UIImageView = {
+    private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "avatar")
@@ -46,6 +46,9 @@ class ProfileHeaderView: UIView {
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        button.clipsToBounds = true
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
@@ -68,7 +71,6 @@ class ProfileHeaderView: UIView {
         textField.textAlignment = .center
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         textField.addTarget(self, action: #selector(hideKeyboard), for: .editingDidEndOnExit)
-        
         return textField
     }()
     
@@ -106,16 +108,22 @@ class ProfileHeaderView: UIView {
 }
 
 extension ProfileHeaderView {
-//    enum Metric {
-//        static let indentConst:CGFloat = 16
-//    }
+    enum Metric {
+        static let indentConst: CGFloat = 16
+        static let imageHeight: CGFloat = 100
+        static let imageWidth: CGFloat = 100
+        static let indentNameLabel: CGFloat = 27
+        static let buttonHeight: CGFloat = 50
+        static let textFieldHeight: CGFloat = 40
+
+    }
     
     private func layout() {
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metric.indentConst),
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metric.indentConst),
-            avatarImageView.heightAnchor.constraint(equalToConstant: Metric.avatarHeight),
-            avatarImageView.widthAnchor.constraint(equalToConstant: Metric.avatarWidth),
+            avatarImageView.heightAnchor.constraint(equalToConstant: Metric.imageHeight),
+            avatarImageView.widthAnchor.constraint(equalToConstant: Metric.imageWidth),
             
             fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metric.indentNameLabel),
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),

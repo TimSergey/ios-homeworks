@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "logo_transparent.png",
+      "filename" : "blue_pixel.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "logo_transparent@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "logo_transparent@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

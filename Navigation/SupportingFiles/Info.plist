@@ -21,10 +21,6 @@
 	</dict>
 	<key>UILaunchScreen</key>
 	<dict>
-		<key>UIColorName</key>
-		<string>AppBreweryBackground</string>
-		<key>UIImageName</key>
-		<string>AppBreweryLogo</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
 		<false/>
 	</dict>

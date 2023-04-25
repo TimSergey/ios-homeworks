@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [createFeedVC(), createProfileVC()]
+        tabBarController.viewControllers = [createFeedVC(), createLoginVC()]
         tabBarController.tabBar.tintColor = UIColor.blue
         tabBarController.tabBar.backgroundColor = .systemGray3
         tabBarController.tabBar.unselectedItemTintColor = .black
@@ -31,19 +31,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createFeedVC() -> UINavigationController {
         let feedViewController = FeedViewController()
         feedViewController.title = "Лента новостей"
-        feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "newspaper.circle"), tag: 0)
+        feedViewController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "newspaper.circle"), tag: 0)
         return UINavigationController(rootViewController: feedViewController)
     }
     
-    func createProfileVC() -> UINavigationController {
-        let profileViewController = ProfileViewController()
-        profileViewController.title = "Профиль"
-        profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
-        
-        return UINavigationController(rootViewController: profileViewController)
+//    func createProfileVC() -> UINavigationController {
+//        let profileViewController = ProfileViewController()
+//        profileViewController.title = "Профиль"
+//        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
+//
+//        return UINavigationController(rootViewController: profileViewController)
+//    }
+    
+    func createLoginVC() -> UINavigationController {
+        let loginViewController = LogInViewController()
+        loginViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
+        return UINavigationController(rootViewController: loginViewController)
     }
-    
-    
     
 }
 
