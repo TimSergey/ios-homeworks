@@ -9,11 +9,7 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        layout()
-    }
+    // MARK: - Private properties
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -53,11 +49,23 @@ final class FeedViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Override func
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        layout()
+    }
+    
+    // MARK: - @objc func
+    
     @objc func showMyPost() {
         let postViewController = PostViewController()
         navigationController?.pushViewController(postViewController, animated: true)
     }
 }
+
+// MARK: - extension FeedVC
 
 extension FeedViewController {
     
@@ -65,6 +73,8 @@ extension FeedViewController {
         static let stackViewWidtht:CGFloat = 150
         static let buttonHeight:CGFloat = 50
     }
+    
+    // MARK: - Layout func
     
     private func layout() {
         view.addSubview(stackView)
