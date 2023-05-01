@@ -20,6 +20,7 @@
 		8494FD6929E6CC93002D5058 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494FD6829E6CC93002D5058 /* ProfileHeaderView.swift */; };
 		84B2415A29FA4BC20003F2E5 /* ProfileTableHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2415929FA4BC20003F2E5 /* ProfileTableHederView.swift */; };
 		84B2415C29FA67F00003F2E5 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2415B29FA67F00003F2E5 /* PostTableViewCell.swift */; };
+		84C569B729FA935100BD01A2 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C569B629FA935100BD01A2 /* UIView + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		8494FD6829E6CC93002D5058 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileHeaderView.swift; path = Navigation/Profile/ProfileHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		84B2415929FA4BC20003F2E5 /* ProfileTableHederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHederView.swift; sourceTree = "<group>"; };
 		84B2415B29FA67F00003F2E5 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		84C569B629FA935100BD01A2 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				845007BA29E3FBB8005793A4 /* Post.swift */,
 				84B2415B29FA67F00003F2E5 /* PostTableViewCell.swift */,
+				84C569B629FA935100BD01A2 /* UIView + Extension.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				845007BD29E402BF005793A4 /* InfoViewController.swift in Sources */,
 				845007BB29E3FBB9005793A4 /* Post.swift in Sources */,
 				845007A029E34D90005793A4 /* SceneDelegate.swift in Sources */,
+				84C569B729FA935100BD01A2 /* UIView + Extension.swift in Sources */,
 				845007B929E3EA3E005793A4 /* PostViewController.swift in Sources */,
 				844B854429F50CF100A4C0AD /* LogInViewController.swift in Sources */,
 				8494FD6929E6CC93002D5058 /* ProfileHeaderView.swift in Sources */,

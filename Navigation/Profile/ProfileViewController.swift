@@ -16,7 +16,9 @@ final class ProfileViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         tableView.dataSource = self
+        tableView.delegate = self
         return tableView
     }()
     
@@ -53,10 +55,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        var content: UIListContentConfiguration = cell.defaultContentConfiguration()
-        content.text = postModel[indexPath.row].author
-        cell.contentConfiguration = content
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        cell.setupCell(model: postModel[indexPath.row])
         return cell
     }
     // MARK: UITableViewDelegate
