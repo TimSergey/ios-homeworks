@@ -1,5 +1,5 @@
 //
-//  ProfileHeaderView.swift
+//  ProfileTableHeaderView.swift
 //  Navigation
 //
 //  Created by Сергей Тимофеев on 12.04.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileHeaderView: UIView {
+final class ProfileTableHeaderView: UIView {
     
     // MARK: - Private properties
     
@@ -16,8 +16,8 @@ final class ProfileHeaderView: UIView {
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "avatar")
-        imageView.layer.cornerRadius = 50
+        imageView.image = UIImage(named: "аватар")
+        imageView.layer.cornerRadius = 75
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.contentMode = .scaleAspectFill
@@ -29,7 +29,7 @@ final class ProfileHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.text = "Amazing wolf"
+        label.text = "Эш Кетчум"
         return label
     }()
     
@@ -118,11 +118,11 @@ final class ProfileHeaderView: UIView {
 
 // MARK: - extension
 
-extension ProfileHeaderView {
+extension ProfileTableHeaderView {
     enum Metric {
         static let indentConst: CGFloat = 16
-        static let imageHeight: CGFloat = 100
-        static let imageWidth: CGFloat = 100
+        static let imageHeight: CGFloat = 150
+        static let imageWidth: CGFloat = 150
         static let indentNameLabel: CGFloat = 27
         static let buttonHeight: CGFloat = 50
         static let textFieldHeight: CGFloat = 40
@@ -143,22 +143,25 @@ extension ProfileHeaderView {
             // fullNameLabel
             fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metric.indentNameLabel),
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
-            
-            // setStatusButton
-            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metric.indentConst),
-            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metric.indentConst),
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Metric.indentConst),
-            setStatusButton.heightAnchor.constraint(equalToConstant: Metric.buttonHeight),
+            fullNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Metric.indentConst),
             
             // statusLabel
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
             statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: Metric.indentConst),
+            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
+            statusLabel.trailingAnchor.constraint(equalTo: fullNameLabel.trailingAnchor),
             
             // statusTextField
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: Metric.indentConst),
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Metric.indentConst),
-            statusTextField.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),
-            statusTextField.heightAnchor.constraint(equalToConstant: Metric.textFieldHeight)
+            statusTextField.trailingAnchor.constraint(equalTo: statusLabel.trailingAnchor),
+            statusTextField.heightAnchor.constraint(equalToConstant: Metric.textFieldHeight),
+            
+            // setStatusButton
+            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: Metric.indentConst),
+            setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Metric.indentConst),
+            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Metric.indentConst),
+            setStatusButton.heightAnchor.constraint(equalToConstant: Metric.buttonHeight),
+            setStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Metric.indentConst)
         ])
     }
 }

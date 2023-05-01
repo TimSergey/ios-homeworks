@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ежик.png",
+      "filename" : "аватар.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ежик@2x.png",
+      "filename" : "аватар@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ежик@3x.png",
+      "filename" : "аватар@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

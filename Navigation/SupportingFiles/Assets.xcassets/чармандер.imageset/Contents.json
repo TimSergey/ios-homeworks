@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "лисица.jpeg",
+      "filename" : "чармандер.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "лисица@2x.jpeg",
+      "filename" : "чармандер@2x.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "лисица@3x.jpeg",
+      "filename" : "чармандер@3x.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -16,42 +16,32 @@ struct Post {
     
     static func makePost() -> [Post] {
         var posts = [Post]()
-        posts.append(Post(author: "Хищник",
-                          description: "Вот так выгдядел молодой Ракета,ещё до того как встретил Грута",
-                          image: "ракета",
+        posts.append(Post(author: "Бульбазавр",
+                          description: "Бульбазавра можно увидеть дремлющим при ярком солнечном свете. На его спине есть семя. На солнце семя растет и становится больше.",
+                          image: "бульбазавр",
                           likes: 151,
                           views: 223))
         
-        posts.append(Post(author: "NaGiBator_3000",
-                          description: "Просто ежик с шипами",
-                          image: "ежик",
+        posts.append(Post(author: "Пикачу",
+                          description: "Всякий раз, когда Пикачу встречает что-то новое, то может поразить это электрическим разрядом. Если вы столкнетесь, например, с почерневшими ягодами - это прямое доказательство того, что Пикачу ошибочно принял их за что-то другое.",
+                          image: "пикачу",
                           likes: 106,
                           views: 209))
         
-        posts.append(Post(author: "ΜγχαммеΔ - Αλυ",
-                          description: "Лисица хитрая, не садись к ней на нос!",
-                          image: "лисица",
+        posts.append(Post(author: "Сквиртл",
+                          description: "Сквиртл использует свой панцирь не только для защиты. Такая оболочка округлой формы и канавки на ее поверхности помогают свести к минимуму сопротивление в воде, что позволяет этому Покемону плавать на высоких скоростях.",
+                          image: "сквиртл",
                           likes: 80,
                           views: 105))
         
-        posts.append(Post(author: "Cильвестор_C_Tалоном",
-                          description: "Мой братан тигр... 24 / 7 тигр...",
-                          image: "львенок",
+        posts.append(Post(author: "Чармандер",
+                          description: "Пламя, горящее на кончике хвоста, является показателем его эмоций. Пламя колышется, когда Чармандер доволен. Если Покемон приходит в ярость, пламя горит интенсивнее.",
+                          image: "чармандер",
                           likes: 152,
                           views: 300))
         return posts
     }
 }
 
-
-let allPosts: [Post] = [
-    Post(author: "Хищник", description: "Молодой Ракета", image: "ракета", likes: 15, views: 22),
-
-    Post(author: "NaGiBator_3000", description: "Просто ежик", image: "ежик", likes: 10, views: 20),
-    
-    Post(author: "ΜγχαммеΔ - Αλυ", description: "Лисица хитрая", image: "лисица", likes: 8, views: 10),
-    
-    Post(author: "сильвестор_с_талоном", description: "Мой братан тигр", image: "тигр", likes: 15, views: 30)
-]
 
 

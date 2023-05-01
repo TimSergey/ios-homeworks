@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "львенок.jpeg",
+      "filename" : "пикачу.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "львенок@2x.jpeg",
+      "filename" : "пикачу@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "львенок@3x.jpeg",
+      "filename" : "пикачу@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -62,6 +62,8 @@ final class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    // MARK: - Override init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
@@ -70,6 +72,8 @@ final class PostTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Override func
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -104,32 +108,31 @@ final class PostTableViewCell: UITableViewCell {
             contentWhiteView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -viewInset),
             
             // authorLabel
-            authorLabel.topAnchor.constraint(equalTo: contentWhiteView.topAnchor, constant: viewInset),
-            authorLabel.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor),
-            authorLabel.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor),
+            authorLabel.topAnchor.constraint(equalTo: contentWhiteView.topAnchor),
+            authorLabel.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: viewInset),
+            authorLabel.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -viewInset),
             
             // postImageView
             postImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor),
             postImageView.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor),
-            postImageView.trailingAnchor.constraint(equalTo: authorLabel.trailingAnchor),
+            postImageView.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor),
             postImageView.widthAnchor.constraint(equalTo: contentWhiteView.widthAnchor),
             postImageView.heightAnchor.constraint(equalTo: postImageView.widthAnchor),
             
             // descriptionLabel
             descriptionLabel.topAnchor.constraint(equalTo: postImageView.bottomAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: postImageView.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: postImageView.trailingAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: postImageView.leadingAnchor, constant: viewInset),
+            descriptionLabel.trailingAnchor.constraint(equalTo: postImageView.trailingAnchor, constant: -viewInset),
             
             // likesLabel
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
-            likesLabel.leadingAnchor.constraint(equalTo: postImageView.leadingAnchor),
+            likesLabel.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor),
             likesLabel.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor),
             
             // viewsLabel
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
-            viewsLabel.trailingAnchor.constraint(equalTo: postImageView.trailingAnchor),
+            viewsLabel.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor),
             viewsLabel.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor)
-            
         ])
     }
 }
