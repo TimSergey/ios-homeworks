@@ -58,13 +58,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
         cell.setupCell(model: postModel[indexPath.row])
+        cell.selectionStyle = .none
         return cell
     }
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let header = ProfileTableHeaderView()
+            let header = ProfileHeaderView()
             return header
         } else {
             return nil

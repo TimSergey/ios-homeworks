@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileTableHeaderView: UIView {
+final class ProfileHeaderView: UIView {
     
     // MARK: - Private properties
     
@@ -42,25 +42,6 @@ final class ProfileTableHeaderView: UIView {
         return label
     }()
     
-    private lazy var setStatusButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Show status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +55,23 @@ final class ProfileTableHeaderView: UIView {
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         textField.addTarget(self, action: #selector(hideKeyboard), for: .editingDidEndOnExit)
         return textField
+    }()
+    
+    private lazy var setStatusButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Show status", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.2901960784, green: 0.5215686275, blue: 0.7960784314, alpha: 1)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 4
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        return button
     }()
     
     // MARK: - Override func
@@ -118,7 +116,7 @@ final class ProfileTableHeaderView: UIView {
 
 // MARK: - extension
 
-extension ProfileTableHeaderView {
+extension ProfileHeaderView {
     enum Metric {
         static let indentConst: CGFloat = 16
         static let imageHeight: CGFloat = 150
@@ -126,7 +124,7 @@ extension ProfileTableHeaderView {
         static let indentNameLabel: CGFloat = 27
         static let buttonHeight: CGFloat = 50
         static let textFieldHeight: CGFloat = 40
-
+        
     }
     
     // MARK: - Layout func
