@@ -9,8 +9,6 @@ import UIKit
 
 final class PostViewController: UIViewController {
     
-    var post: Post? 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPostVC()
@@ -18,7 +16,6 @@ final class PostViewController: UIViewController {
     
     private func setupPostVC() {
         self.view.backgroundColor = .systemBackground
-        self.navigationItem.title = post != nil ? post?.title : ""
         
         let barButtom = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapOnBarButton))
         navigationItem.rightBarButtonItem = barButtom

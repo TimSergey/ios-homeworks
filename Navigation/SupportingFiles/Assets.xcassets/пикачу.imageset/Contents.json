@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "avatar.png",
+      "filename" : "пикачу.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "avatar@2x.png",
+      "filename" : "пикачу@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "avatar@3x.png",
+      "filename" : "пикачу@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

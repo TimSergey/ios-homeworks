@@ -9,6 +9,8 @@ import UIKit
 
 final class LogInViewController: UIViewController {
     
+    // MARK: - Pvivate properties
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +94,8 @@ final class LogInViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Override func
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -113,6 +117,8 @@ final class LogInViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    // MARK: - Private func
+    
     private func addSubview() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -122,6 +128,8 @@ final class LogInViewController: UIViewController {
         stackView.addArrangedSubview(passwordTextField)
         contentView.addSubview(loginButton)
     }
+    
+    // MARK: - @objc func
     
     @objc func pressLoginButton() {
         let profileViewController = ProfileViewController()
@@ -143,6 +151,8 @@ final class LogInViewController: UIViewController {
     }
 }
 
+// MARK: - extension
+
 extension LogInViewController {
     
     enum Metric {
@@ -154,6 +164,8 @@ extension LogInViewController {
         static let logoIndent: CGFloat = 120
         static let stackViewHeight: CGFloat = 100
     }
+    
+    // MARK: - Layout func
     
     private func layout() {
         NSLayoutConstraint.activate([
