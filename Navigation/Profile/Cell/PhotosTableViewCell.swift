@@ -35,15 +35,12 @@ final class PhotosTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image =  UIImage(systemName: "arrow.right")
         imageView.tintColor = .black
-        //imageView.contentMode = .scaleAspectFill
-        //imageView.clipsToBounds = true
         return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addPhoto()
-        //setupViews()
         layout()
     }
     
@@ -67,7 +64,6 @@ extension PhotosTableViewCell {
             imageView.translatesAutoresizingMaskIntoConstraints = false
             imageView.layer.cornerRadius = 6
             imageView.image = UIImage(named: nameImage)
-            //imageView.contentMode = .scaleAspectFit
             imageView.clipsToBounds = true
             return imageView
         }()
@@ -80,7 +76,7 @@ extension PhotosTableViewCell {
         
         let viewInset: CGFloat = 8
         let indentConst: CGFloat = 12
-        let photoSize: CGFloat = contentView.frame.size.width / 4
+        let photoSize: CGFloat = (UIScreen.main.bounds.width - 48) / 4
         let arrowSize: CGFloat = 25
         
         NSLayoutConstraint.activate([
@@ -128,7 +124,7 @@ extension PhotosTableViewCell {
             imageView4.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: indentConst),
             imageView4.leadingAnchor.constraint(equalTo: imageView3.trailingAnchor, constant: viewInset),
             imageView4.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -indentConst),
-            //imageView4.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -indentConst),
+            imageView4.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -indentConst)
         ])
     }
 }
