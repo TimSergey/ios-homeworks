@@ -53,6 +53,9 @@ final class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: UITableViewDataSource
+    
+    func numberOfSections(in tableView: UITableView) -> Int { return 2 }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         section == 0 ? 1 : postModel.count
     }
