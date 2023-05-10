@@ -29,6 +29,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         layuot()
     }
     
@@ -50,7 +51,7 @@ final class ProfileViewController: UIViewController {
 
 // MARK: - extension
 
-extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+extension ProfileViewController: UITableViewDataSource {
     
     // MARK: UITableViewDataSource
     
@@ -71,14 +72,24 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-    // MARK: UITableViewDelegate
-    
+}
+
+// MARK: UITableViewDelegate
+
+extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = ProfileHeaderView()
             return header
         } else {
             return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let photosViewController = PhotosViewController()
+        if indexPath.section == 0 {
+            navigationController?.pushViewController(PhotosViewController(), animated: true)
         }
     }
 }
