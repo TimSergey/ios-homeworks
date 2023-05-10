@@ -33,6 +33,11 @@ final class ProfileViewController: UIViewController {
         layuot()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: - Private func
     
     private func layuot() {
@@ -87,7 +92,7 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let photosViewController = PhotosViewController()
+        _ = PhotosViewController()
         if indexPath.section == 0 {
             navigationController?.pushViewController(PhotosViewController(), animated: true)
         }
