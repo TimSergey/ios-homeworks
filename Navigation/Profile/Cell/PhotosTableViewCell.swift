@@ -14,6 +14,8 @@ final class PhotosTableViewCell: UITableViewCell {
     var imageView3: UIImageView!
     var imageView4: UIImageView!
     
+    // MARK: - Private properties
+    
     private let contentWhiteView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +40,8 @@ final class PhotosTableViewCell: UITableViewCell {
         return imageView
     }()
     
+    // MARK: - Override init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addPhoto()
@@ -48,6 +52,8 @@ final class PhotosTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Private func
+    
     private func addPhoto() {
         imageView1 = createImageView(nameImageView: "imageView1", nameImage: "1")
         imageView2 = createImageView(nameImageView: "imageView2", nameImage: "2")
@@ -55,6 +61,8 @@ final class PhotosTableViewCell: UITableViewCell {
         imageView4 = createImageView(nameImageView: "imageView4", nameImage: "4")
     }
 }
+
+// MARK: - Extension
 
 extension PhotosTableViewCell {
     
@@ -74,11 +82,6 @@ extension PhotosTableViewCell {
         
         [contentWhiteView, photosLabel, arrowImageView, imageView1, imageView2, imageView3, imageView4].forEach { contentView.addSubview($0) }
         
-        let viewInset: CGFloat = 8
-        let indentConst: CGFloat = 12
-        let photoSize: CGFloat = (UIScreen.main.bounds.width - 48) / 4
-        let arrowSize: CGFloat = 25
-        
         NSLayoutConstraint.activate([
         
             // contentWhiteView
@@ -88,43 +91,55 @@ extension PhotosTableViewCell {
             contentWhiteView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             // photosLabel
-            photosLabel.topAnchor.constraint(equalTo: contentWhiteView.topAnchor, constant: indentConst),
-            photosLabel.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: indentConst),
+            photosLabel.topAnchor.constraint(equalTo: contentWhiteView.topAnchor, constant: Metric.indentConst),
+            photosLabel.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: Metric.indentConst),
             
             // arrowImageView
-            arrowImageView.heightAnchor.constraint(equalToConstant: arrowSize),
-            arrowImageView.widthAnchor.constraint(equalToConstant: arrowSize),
+            arrowImageView.heightAnchor.constraint(equalToConstant: Metric.arrowSize),
+            arrowImageView.widthAnchor.constraint(equalToConstant: Metric.arrowSize),
             arrowImageView.centerYAnchor.constraint(equalTo: photosLabel.centerYAnchor),
-            arrowImageView.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -indentConst),
+            arrowImageView.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -Metric.indentConst),
             
             // imageView1
-            imageView1.heightAnchor.constraint(equalToConstant: photoSize),
-            imageView1.widthAnchor.constraint(equalToConstant: photoSize),
-            imageView1.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: indentConst),
-            imageView1.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: indentConst),
-            imageView1.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -indentConst),
+            imageView1.heightAnchor.constraint(equalToConstant: Metric.photoSize),
+            imageView1.widthAnchor.constraint(equalToConstant: Metric.photoSize),
+            imageView1.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: Metric.indentConst),
+            imageView1.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: Metric.indentConst),
+            imageView1.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -Metric.indentConst),
             
             // imageView2
-            imageView2.heightAnchor.constraint(equalToConstant: photoSize),
-            imageView2.widthAnchor.constraint(equalToConstant: photoSize),
-            imageView2.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: indentConst),
-            imageView2.leadingAnchor.constraint(equalTo: imageView1.trailingAnchor, constant: viewInset),
-            imageView2.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -indentConst),
+            imageView2.heightAnchor.constraint(equalToConstant: Metric.photoSize),
+            imageView2.widthAnchor.constraint(equalToConstant: Metric.photoSize),
+            imageView2.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: Metric.indentConst),
+            imageView2.leadingAnchor.constraint(equalTo: imageView1.trailingAnchor, constant: Metric.viewInset),
+            imageView2.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -Metric.indentConst),
             
             // imageView3
-            imageView3.heightAnchor.constraint(equalToConstant: photoSize),
-            imageView3.widthAnchor.constraint(equalToConstant: photoSize),
-            imageView3.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: indentConst),
-            imageView3.leadingAnchor.constraint(equalTo: imageView2.trailingAnchor, constant: viewInset),
-            imageView3.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -indentConst),
+            imageView3.heightAnchor.constraint(equalToConstant: Metric.photoSize),
+            imageView3.widthAnchor.constraint(equalToConstant: Metric.photoSize),
+            imageView3.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: Metric.indentConst),
+            imageView3.leadingAnchor.constraint(equalTo: imageView2.trailingAnchor, constant: Metric.viewInset),
+            imageView3.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -Metric.indentConst),
             
             // imageView4
-            imageView4.heightAnchor.constraint(equalToConstant: photoSize),
-            imageView4.widthAnchor.constraint(equalToConstant: photoSize),
-            imageView4.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: indentConst),
-            imageView4.leadingAnchor.constraint(equalTo: imageView3.trailingAnchor, constant: viewInset),
-            imageView4.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -indentConst),
-            imageView4.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -indentConst)
+            imageView4.heightAnchor.constraint(equalToConstant: Metric.photoSize),
+            imageView4.widthAnchor.constraint(equalToConstant: Metric.photoSize),
+            imageView4.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: Metric.indentConst),
+            imageView4.leadingAnchor.constraint(equalTo: imageView3.trailingAnchor, constant: Metric.viewInset),
+            imageView4.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -Metric.indentConst),
+            imageView4.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -Metric.indentConst)
         ])
+    }
+}
+
+// MARK: - Metric
+
+extension PhotosTableViewCell {
+    
+    enum Metric {
+        static let viewInset: CGFloat = 8
+        static let indentConst: CGFloat = 12
+        static let photoSize: CGFloat = (UIScreen.main.bounds.width - 48) / 4
+        static let arrowSize: CGFloat = 25
     }
 }

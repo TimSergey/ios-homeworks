@@ -9,7 +9,7 @@ import UIKit
 
 class PhotosViewController: UIViewController {
     
-    
+    // MARK: - Private properties
     
     private let photosModel = Photos.showPhotos()
     
@@ -24,7 +24,7 @@ class PhotosViewController: UIViewController {
         collectionView.delegate = self
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -33,12 +33,16 @@ class PhotosViewController: UIViewController {
         photosCollectionView.reloadData()
     }
     
+    // MARK: - Private func
+    
     private func setupView() {
         view.addSubview(photosCollectionView)
         navigationController?.navigationBar.isHidden = false
         title = "Photo Gallery"
     }
 }
+
+// MARK: - Extension
 
 extension PhotosViewController {
     
@@ -52,6 +56,7 @@ extension PhotosViewController {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
@@ -67,13 +72,15 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-        }
+        UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-             inset
-        }
+        inset
+    }
 }
+
+// MARK: - UICollectionViewDataSource 
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
