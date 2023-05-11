@@ -11,8 +11,8 @@ class ProfileTableHederView: UITableViewHeaderFooterView {
 
     //MARK: - Properties
     
-    private var profileHeaderView: ProfileTableHeaderView = {
-        let profileHeaderView = ProfileTableHeaderView()
+    private var profileHeaderView: ProfileHeaderView = {
+        let profileHeaderView = ProfileHeaderView()
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         return profileHeaderView
     }()

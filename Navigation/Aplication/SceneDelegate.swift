@@ -16,8 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [createFeedVC(), createLoginVC()]
-        tabBarController.tabBar.tintColor = UIColor.blue
-        tabBarController.tabBar.backgroundColor = .systemGray3
+        tabBarController.tabBar.tintColor = UIColor.systemBlue
+        tabBarController.tabBar.backgroundColor = .systemGray4
         tabBarController.tabBar.unselectedItemTintColor = .black
         
         let window = UIWindow(windowScene: windowScene)
