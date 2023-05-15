@@ -12,7 +12,6 @@ final class ProfileViewController: UIViewController {
     // MARK: - Private properties
     
     private let postModel = Post.makePost()
-    private let photosModel = Photos.showPhotos()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
