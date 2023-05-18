@@ -11,6 +11,9 @@ final class LogInViewController: UIViewController {
     
     // MARK: - Pvivate properties
     
+    private let login = "admin"
+    private let password = "admin123"
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +33,7 @@ final class LogInViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var emailTextField: UITextField = {
+    private lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .systemGray6
@@ -94,6 +97,19 @@ final class LogInViewController: UIViewController {
         return button
     }()
     
+    private let labelWarning: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        //label.backgroundColor = .systemGray4
+        label.text = "password must be more than 5 characters"
+        label.layer.cornerRadius = 10
+        label.textColor = .systemGray
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.isHidden = true
+        return label
+    }()
+    
     // MARK: - Override func
     
     override func viewDidLoad() {
@@ -124,16 +140,34 @@ final class LogInViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubview(logoImageView)
         contentView.addSubview(stackView)
-        stackView.addArrangedSubview(emailTextField)
+        stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passwordTextField)
         contentView.addSubview(loginButton)
+        contentView.addSubview(labelWarning)
     }
     
     // MARK: - @objc func
     
     @objc func pressLoginButton() {
-        let profileViewController = ProfileViewController()
-        navigationController?.pushViewController(profileViewController, animated: true)
+        
+        guard let loginText = loginTextField.text, let passwordText = passwordTextField.text else { return }
+        
+        if loginText.isEmpty {
+            stackView.shakeTextField(loginTextField)
+        } else if passwordText.isEmpty {
+            stackView.shakeTextField(passwordTextField)
+        } else if passwordText.count < 5 {
+            labelWarning.isHidden = false
+            labelWarning.shake()
+        } else if loginText == "admin" && passwordText == "admin123" {
+            let profileViewController = ProfileViewController()
+            navigationController?.pushViewController(profileViewController, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Ошибка", message: "Логин: admin, пароль: admin123 ", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     @objc func hideKeyboard() {
@@ -169,35 +203,48 @@ extension LogInViewController {
     
     private func layout() {
         NSLayoutConstraint.activate([
+            
+            // scrollView
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
+            // contentView
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
+            // logoImageView
             logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Metric.logoIndent),
             logoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: Metric.imageHeight),
             logoImageView.widthAnchor.constraint(equalToConstant: Metric.imageWidth),
             
-            emailTextField.heightAnchor.constraint(equalToConstant: Metric.textFieldHeight),
+            // textField
+            loginTextField.heightAnchor.constraint(equalToConstant: Metric.textFieldHeight),
             passwordTextField.heightAnchor.constraint(equalToConstant: Metric.textFieldHeight),
             
+            // stackView
             stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: Metric.logoIndent),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Metric.indentConst),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Metric.indentConst),
             stackView.heightAnchor.constraint(equalToConstant: Metric.stackViewHeight),
             
+            // loginButton
             loginButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: Metric.indentConst),
             loginButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            loginButton.heightAnchor.constraint(equalToConstant: Metric.buttonHeight)
+            //loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            loginButton.heightAnchor.constraint(equalToConstant: Metric.buttonHeight),
+            
+            //labelWarning
+            labelWarning.topAnchor.constraint(equalTo: loginButton.bottomAnchor,constant: Metric.indentConst),
+            labelWarning.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
+            labelWarning.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            labelWarning.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor)
         ])
     }
 }
