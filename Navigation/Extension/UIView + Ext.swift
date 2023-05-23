@@ -25,17 +25,4 @@ extension UIView {
         animation.values = [translation, -translation]
         layer.add(animation, forKey: "shake")
     }
-    
-    func shakeTextField(_ textField: UITextField) {
-        let animation = CAKeyframeAnimation(keyPath: "position")
-        animation.duration = 0.3
-        animation.values = [
-            NSValue(cgPoint: CGPoint(x: textField.center.x - 10, y: textField.center.y)),
-            NSValue(cgPoint: CGPoint(x: textField.center.x + 10, y: textField.center.y)),
-            NSValue(cgPoint: CGPoint(x: textField.center.x - 10, y: textField.center.y)),
-            NSValue(cgPoint: CGPoint(x: textField.center.x + 10, y: textField.center.y)),
-            NSValue(cgPoint: CGPoint(x: textField.center.x, y: textField.center.y))
-        ]
-        textField.layer.add(animation, forKey: "position")
-    }
 }

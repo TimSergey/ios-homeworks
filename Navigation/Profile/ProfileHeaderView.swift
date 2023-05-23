@@ -122,6 +122,9 @@ final class ProfileHeaderView: UIView {
     // MARK: - @objc func
     
     @objc func buttonPressed() {
+        if statusTextField.text == "" {
+            statusTextField.changeTextFieldColor(textField: statusTextField)
+        }
         statusLabel.text = statusText
         print(statusTextField.text ?? "")
         statusTextField.text = ""
@@ -129,6 +132,7 @@ final class ProfileHeaderView: UIView {
     }
     
     @objc func statusTextChanged(_ textField: UITextField) {
+        
         statusText = textField.text ?? "Enter your status"
     }
     

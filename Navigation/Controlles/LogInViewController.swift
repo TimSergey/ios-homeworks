@@ -153,9 +153,9 @@ final class LogInViewController: UIViewController {
         guard let loginText = loginTextField.text, let passwordText = passwordTextField.text else { return }
         
         if loginText.isEmpty {
-            stackView.shakeTextField(loginTextField)
+            loginTextField.shakeTF(loginTextField)
         } else if passwordText.isEmpty {
-            stackView.shakeTextField(passwordTextField)
+            passwordTextField.shakeTF(passwordTextField)
         } else if passwordText.count < 5 {
             labelWarning.isHidden = false
             labelWarning.shake()
