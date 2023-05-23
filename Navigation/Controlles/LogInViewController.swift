@@ -12,7 +12,7 @@ final class LogInViewController: UIViewController {
     // MARK: - Pvivate properties
     
     private let login = "admin"
-    private let password = "admin123"
+    private let password = "admin"
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -159,14 +159,11 @@ final class LogInViewController: UIViewController {
         } else if passwordText.count < 5 {
             labelWarning.isHidden = false
             labelWarning.shake()
-        } else if loginText == "admin" && passwordText == "admin123" {
+        } else if loginText == "admin" && passwordText == "admin" {
             let profileViewController = ProfileViewController()
             navigationController?.pushViewController(profileViewController, animated: true)
         } else {
-            let alert = UIAlertController(title: "Ошибка", message: "Логин: admin, пароль: admin123 ", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
+            showAlert(title: "Ошибка", message: "Логин: admin, пароль: admin")
         }
     }
     

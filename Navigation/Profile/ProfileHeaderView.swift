@@ -83,7 +83,7 @@ final class ProfileHeaderView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.2901960784, green: 0.5215686275, blue: 0.7960784314, alpha: 1)
+        button.backgroundColor =  #colorLiteral(red: 0.2901960784, green: 0.5215686275, blue: 0.7960784314, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
