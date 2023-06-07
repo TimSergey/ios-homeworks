@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol CustomTableViewCellDelegate: AnyObject {
+    func addLike(for model: inout[Post], indexPath: IndexPath)
+}
+
 final class PostTableViewCell: UITableViewCell {
     
     // MARK: - Private properties
+    
+    weak var delegate: CustomTableViewCellDelegate?
+    private var indexPathCell = IndexPath()
     
     private let contentWhiteView: UIView = {
         let view = UIView()
@@ -30,7 +37,7 @@ final class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let postImageView: UIImageView = {
+    private lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -46,11 +53,13 @@ final class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let likesLabel: UILabel = {
+    private lazy var likesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.italicSystemFont(ofSize: 16)
         label.textColor = .black
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapLikes)))
+        label.isUserInteractionEnabled = true
         return label
     }()
     
@@ -72,6 +81,16 @@ final class PostTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setIndexPath(_ indexPath: IndexPath) {
+        indexPathCell = indexPath
+    }
+    
+    @objc func tapLikes() {
+        delegate?.addLike(for: &model, indexPath: indexPathCell)
+        likesLabel.text = "Likes: " + String(model[indexPathCell.row].likes)
+    }
+    
     
     // MARK: - Override func
     
@@ -100,7 +119,7 @@ final class PostTableViewCell: UITableViewCell {
         let viewInset: CGFloat = 8
         
         NSLayoutConstraint.activate([
-        
+            
             // contentWhiteView
             contentWhiteView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: viewInset),
             contentWhiteView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: viewInset),

@@ -168,7 +168,7 @@ final class ProfileHeaderView: UIView {
     }
 }
 
-// MARK: - extension
+// MARK: - Extension 
 
 extension ProfileHeaderView {
     enum Metric {
