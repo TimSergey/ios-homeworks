@@ -7,12 +7,11 @@
 
 import UIKit
 
+//var model = Post.makePost()
+
 final class ProfileViewController: UIViewController {
     
     // MARK: - Private properties
-    
-    private let postModel = Post.makePost()
-    private let photosModel = Photos.showPhotos()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -63,7 +62,7 @@ extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int { return 2 }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        section == 0 ? 1 : postModel.count
+        section == 0 ? 1 : model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,8 +71,10 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-            cell.setupCell(model: postModel[indexPath.row])
             cell.selectionStyle = .none
+            cell.setupCell(model: model[indexPath.row])
+            cell.delegate = self
+            cell.setIndexPath(indexPath)
             return cell
         }
     }
@@ -92,9 +93,25 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        _ = PhotosViewController()
+        _ = PhotosCollectionViewController()
         if indexPath.section == 0 {
-            navigationController?.pushViewController(PhotosViewController(), animated: true)
+            navigationController?.pushViewController(PhotosCollectionViewController(), animated: true)
+        } else {
+            let showPostModal = ShowPostVC()
+            model[indexPath.row].views += 1
+            showPostModal.setupData(model: model[indexPath.row])
+            present(showPostModal, animated: true)
+            tableView.reloadData()
+        }
+    }
+}
+
+extension ProfileViewController: CustomTableViewCellDelegate {
+   
+    func addLike(for model: inout [Post], indexPath: IndexPath) {
+        if model[indexPath.row].isLike == false {
+            model[indexPath.row].likes += 1
+            model[indexPath.row].isLike = true
         }
     }
 }

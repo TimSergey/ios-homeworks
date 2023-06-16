@@ -13,7 +13,7 @@ final class ProfileHeaderView: UIView {
     
     private var statusText = "Waiting for something..."
     
-    private let avatarImageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "аватар")
@@ -22,7 +22,28 @@ final class ProfileHeaderView: UIView {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarTap)))
+        imageView.isUserInteractionEnabled = true
         return imageView
+    }()
+    
+    private let transparentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.alpha = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "xmark.circle" ), for: .normal)
+        button.tintColor = .white
+        button.alpha = 0
+        button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeButtonTap)))
+        button.isUserInteractionEnabled = true
+        return button
     }()
     
     private  let fullNameLabel: UILabel = {
@@ -62,7 +83,7 @@ final class ProfileHeaderView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.2901960784, green: 0.5215686275, blue: 0.7960784314, alpha: 1)
+        button.backgroundColor =  #colorLiteral(red: 0.2901960784, green: 0.5215686275, blue: 0.7960784314, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
@@ -89,16 +110,21 @@ final class ProfileHeaderView: UIView {
     // MARK: - Private func
     
     private func setupView() {
-        addSubview(avatarImageView)
         addSubview(fullNameLabel)
         addSubview(statusLabel)
         addSubview(setStatusButton)
         addSubview(statusTextField)
+        addSubview(transparentView)
+        addSubview(avatarImageView)
+        addSubview(closeButton)
     }
     
     // MARK: - @objc func
     
     @objc func buttonPressed() {
+        if statusTextField.text == "" {
+            statusTextField.changeTextFieldColor(textField: statusTextField)
+        }
         statusLabel.text = statusText
         print(statusTextField.text ?? "")
         statusTextField.text = ""
@@ -106,15 +132,43 @@ final class ProfileHeaderView: UIView {
     }
     
     @objc func statusTextChanged(_ textField: UITextField) {
+        
         statusText = textField.text ?? "Enter your status"
     }
     
     @objc func hideKeyboard() {
         endEditing(true)
     }
+    
+    @objc func avatarTap() {
+        UIView.animate(withDuration: 0.5, animations:  {
+            self.avatarImageView.transform = CGAffineTransform(scaleX: 3, y: 3)
+            self.transparentView.frame = .init(origin: CGPoint(x: 0, y: 0), size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+            self.avatarImageView.center = self.transparentView.center
+            self.avatarImageView.layer.cornerRadius = 0
+            self.transparentView.alpha = 1
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.closeButton.alpha = 1
+            }
+        }
+    }
+    
+    @objc private func closeButtonTap() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.closeButton.alpha = 0
+        }) { _ in
+            UIView.animate(withDuration: 0.5, animations: {
+                self.avatarImageView.frame = .init(origin: CGPoint(x: Metric.indentConst, y: Metric.indentConst), size: CGSize(width: Metric.imageWidth, height: Metric.imageHeight))
+                self.avatarImageView.transform = .identity
+                self.transparentView.alpha = 0
+                self.avatarImageView.layer.cornerRadius = Metric.imageWidth / 2
+            })
+        }
+    }
 }
 
-// MARK: - extension
+// MARK: - Extension 
 
 extension ProfileHeaderView {
     enum Metric {
@@ -124,6 +178,7 @@ extension ProfileHeaderView {
         static let indentNameLabel: CGFloat = 27
         static let buttonHeight: CGFloat = 50
         static let textFieldHeight: CGFloat = 40
+        static let closeButtomSize: CGFloat = 30
         
     }
     
@@ -137,6 +192,18 @@ extension ProfileHeaderView {
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metric.indentConst),
             avatarImageView.heightAnchor.constraint(equalToConstant: Metric.imageHeight),
             avatarImageView.widthAnchor.constraint(equalToConstant: Metric.imageWidth),
+            
+            // transparentView
+            transparentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            transparentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            transparentView.topAnchor.constraint(equalTo: topAnchor),
+            transparentView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            // closeButton
+            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metric.indentConst),
+            closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metric.indentConst),
+            closeButton.widthAnchor.constraint(equalToConstant: Metric.closeButtomSize),
+            closeButton.heightAnchor.constraint(equalToConstant: Metric.closeButtomSize),
             
             // fullNameLabel
             fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Metric.indentNameLabel),

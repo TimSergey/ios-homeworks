@@ -22,10 +22,10 @@ final class InfoViewController: UIViewController {
         button.setTitle("Внимание!", for: .normal)
         button.setTitleColor(.black, for: .normal)
         view.addSubview(button)
-        button.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+        button.addTarget(self, action: #selector(showWarning), for: .touchUpInside)
     }
     
-    @objc func showAlert() {
+    @objc func showWarning() {
         let alertViewController = UIAlertController(title: "Ошибка", message: "Что-то пошло не так!", preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
