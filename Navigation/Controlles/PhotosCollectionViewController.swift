@@ -27,15 +27,16 @@ final class PhotosCollectionViewController: UIViewController {
         return collectionView
     }()
     
-    private let whiteView: UIView = {
+    private let transparentView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         view.alpha = 0.7
         return view
     }()
     
     private lazy var crossButton: UIButton = {
             let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 100, y: 150, width: 100, height: 100))
+            button.contentMode = .scaleAspectFill
             button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
             button.tintColor = .white
             button.alpha = 0
@@ -61,7 +62,7 @@ final class PhotosCollectionViewController: UIViewController {
     @objc private func crossButtonAction() {
         animateImageToInitial(rect: initialImageRect)
         crossButton.removeFromSuperview()
-        whiteView.removeFromSuperview()
+        transparentView.removeFromSuperview()
     }
     
     // MARK: - Private func
@@ -76,7 +77,7 @@ final class PhotosCollectionViewController: UIViewController {
     }
     
     private func animateImage(_ image: UIImage?, imageFrame: CGRect) {
-        view.addSubview(whiteView)
+        view.addSubview(transparentView)
         view.addSubview(crossButton)
         view.addSubview(animatingImageView)
         animatingImageView.image = image
@@ -90,7 +91,6 @@ final class PhotosCollectionViewController: UIViewController {
             self.animatingImageView.frame.size = CGSize(width: UIScreen.main.bounds.width,
                                                         height: UIScreen.main.bounds.width)
             self.animatingImageView.center = self.view.center
-            //self.animatingImageView.layer.cornerRadius = UIScreen.main.bounds.width / 2
         } completion: { _ in
             UIView.animate(withDuration: 0.3) {
                 self.crossButton.alpha = 1
@@ -100,13 +100,13 @@ final class PhotosCollectionViewController: UIViewController {
     
     private func animateImageViewBack(rect: CGRect) {
         UIView.animate(withDuration: 0.6) {
-            self.whiteView.alpha = 0
+            self.transparentView.alpha = 0
             self.animatingImageView.frame = rect
             self.animatingImageView.layer.cornerRadius = 0
         } completion: { _ in
             self.animatingImageView.removeFromSuperview()
             self.crossButton.alpha = 0
-            self.whiteView.removeFromSuperview()
+            self.transparentView.removeFromSuperview()
         }
     }
     

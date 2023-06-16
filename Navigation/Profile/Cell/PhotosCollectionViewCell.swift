@@ -23,7 +23,6 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
         imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        //imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
         return imageView
     }()
     
